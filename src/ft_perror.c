@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/14 01:29:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/14 01:29:28 by mbriand          ###   ########.fr       */
+/*   Created: 2024/07/14 01:10:21 by mbriand           #+#    #+#             */
+/*   Updated: 2024/07/14 02:06:58 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// ./philo 2number_of_philo 3time_to_die 4time_to_eat 5time_to_sleep 6number_of_eat
-int main(int ac, char **av)
+void	ft_perror(char	*error)
 {
-	if (!ft_parsing(ac, av))
-		return (1);
-	
-
-	// while ()
-
-
-
-    return (0);
+	if (!error)
+		return ;
+	write(2, error, ft_strlen(error));
+	write(2, "\n", 1);
 }
