@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/21 23:53:52 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/22 00:22:59 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,20 @@ void		ft_set_config(t_config *config, int ac, char **av);
 int			ft_strlen(const char *s);
 int			ft_is_posnbr(char *nbr);
 int			ft_atoi(const char *nptr);
-int	ft_timestamp(struct timeval start);
+int			ft_timestamp(t_philos *philos);
 
 // exe
-int			ft_exe(t_philos *philos);
-void	ft_free_all(t_philos *philos);	
+void		ft_exe(t_philos *philos);
+void		*ft_meal(void *start);
+void		ft_free_all(t_philos *philos);	
 
 // states
-int	ft_eating(t_philos *philos, struct timeval *begin);
-int	ft_sleeping(t_philos *philos, struct timeval *begin);
-int	ft_thinking(t_philos *philos, struct timeval *begin);
+int			ft_eating(t_philos *philos);
+int			ft_sleeping(t_philos *philos);
+int			ft_thinking(t_philos *philos);
 
 // dead check
-int	ft_sleep_n_dead_check(t_philos *philos, int stime, int a);
-int	ft_dead_check(t_philos *philos, int a);
+int			ft_sleep_n_dead_check(t_philos *philos, int stime, int a);
+int			ft_dead_check(t_philos *philos, int a);
 
 #endif

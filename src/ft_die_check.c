@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/21 23:53:48 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/22 00:19:11 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_dead_check(t_philos *philos, int a)
 	// this philosopher is dead
 	if (a == 1 && ft_is_dead(philos))
 	{
-		printf("%d %d died\n", ft_timestamp(philos->config->start), philos->i);
+		printf("%d %d died\n", ft_timestamp(philos), philos->i);
 		// protect this value using mutex
 		philos->config->someone_dead = 1;
 		return (1);

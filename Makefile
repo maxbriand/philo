@@ -11,6 +11,7 @@ SRC = 	main.c \
 		src/ft_free_all.c \
 		src/ft_die_check.c \
 		src/ft_states.c \
+		src/ft_meal.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
