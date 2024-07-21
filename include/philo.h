@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/14 02:09:01 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/21 23:53:52 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,55 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_config
+{
+	int				philo_nbr;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	int				eat_rep;
+	int				six_args;
+	int				someone_dead;
+	// pthread_mutex_t	m_someone_dead;
+	struct timeval	start;
+}	t_config;
+
+typedef struct s_philos
+{
+	pthread_mutex_t	*fork;
+	pthread_t		nthread;
+	int				i;
+	int				already_eat;
+	struct timeval	end_eat;
+	t_config		*config;
+	struct s_philos	*next;
+}	t_philos;
+
 // parsing
-int		ft_parsing(int ac, char **av);
-void	ft_perror(char *error);
+int			ft_parsing(t_config *config, int ac, char **av);
+int			ft_perror(char	*error);
+
+// set structures
+t_philos	*ft_set_philos(t_config *config);
+void		ft_set_config(t_config *config, int ac, char **av);
 
 // utils
-int	ft_strlen(const char *s);
-int	ft_is_posnbr(char *nbr);
-int	ft_atoi(const char *nptr);
+int			ft_strlen(const char *s);
+int			ft_is_posnbr(char *nbr);
+int			ft_atoi(const char *nptr);
+int	ft_timestamp(struct timeval start);
 
-// typedef	struct s_philos
-// {
-// 	int	i; // ?
-// 	struct s_philos	*next;
-// } t_philos;
+// exe
+int			ft_exe(t_philos *philos);
+void	ft_free_all(t_philos *philos);	
+
+// states
+int	ft_eating(t_philos *philos, struct timeval *begin);
+int	ft_sleeping(t_philos *philos, struct timeval *begin);
+int	ft_thinking(t_philos *philos, struct timeval *begin);
+
+// dead check
+int	ft_sleep_n_dead_check(t_philos *philos, int stime, int a);
+int	ft_dead_check(t_philos *philos, int a);
 
 #endif

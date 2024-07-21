@@ -1,12 +1,16 @@
 NAME = philo
 CC = cc
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 SRC = 	main.c \
 		src/ft_exe.c \
 		src/ft_parsing.c \
 		src/ft_perror.c \
 		src/ft_utils.c \
+		src/ft_set_strucs.c \
+		src/ft_free_all.c \
+		src/ft_die_check.c \
+		src/ft_states.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
@@ -28,6 +32,6 @@ fclean: clean
 re: fclean all
 
 valgrind:
-	valgrind --tool=drd --tool=helgrind ./philo
+	valgrind --tool=drd --tool=helgrind ./philo 3 200 200 200
 
 .PHONY: all re fclean clean

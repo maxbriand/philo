@@ -27,3 +27,20 @@ pthread_join: Wait for the specified thread
 	// fork = number of philosophers -> create the number of philosophers
 	// need to fork to eat
 
+# Parsing test
+scope:
+number of philosophers : 1 - 200
+time to die: 60 - max int?
+time to eat: 60 - max int?
+time to sleep: 60 - max int
+number of eat time: 1 - max int
+// what's the behavior max int
+
+// test int min
+// test int max
+// test long
+// test long long
+// test with letter
+// test with special char
+
+./philo 
