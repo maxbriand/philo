@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:22:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/22 00:25:08 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:47:38 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,24 @@ static int	ft_launch_meal(t_philos *philos)
 	return (0);
 }
 
+static int	ft_launch_monitoring(t_philos *philos)
+{
+
+
+}
+
+static void	ft_wait_monitoring()
+{
+
+
+}
+
 void	ft_exe(t_philos *philos)
 {
 	if (ft_launch_meal(philos))
 		return ;
+	if (ft_launch_monitoring(philos->config))
+		return ;
 	ft_wait_meal_end(philos);
+	ft_wait_monitoring(philos->congig);
 }

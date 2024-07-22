@@ -9,8 +9,7 @@ SRC = 	main.c \
 		src/ft_utils.c \
 		src/ft_set_strucs.c \
 		src/ft_free_all.c \
-		src/ft_die_check.c \
-		src/ft_states.c \
+		src/ft_end_check.c \
 		src/ft_meal.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))

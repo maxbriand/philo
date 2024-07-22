@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/22 00:22:59 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/22 20:49:39 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_config
 	int				eat_rep;
 	int				six_args;
 	int				someone_dead;
-	// pthread_mutex_t	m_someone_dead;
+	pthread_mutex_t	dead_check;
 	struct timeval	start;
 }	t_config;
 
@@ -39,7 +39,7 @@ typedef struct s_philos
 	pthread_t		nthread;
 	int				i;
 	int				already_eat;
-	struct timeval	end_eat;
+	struct timeval	last_meal;
 	t_config		*config;
 	struct s_philos	*next;
 }	t_philos;
