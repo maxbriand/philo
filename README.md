@@ -44,3 +44,18 @@ number of eat time: 1 - max int
 // test with special char
 
 ./philo 
+
+
+void	ft_write_time(t_philos *philos, struct timeval zero, char *state, int sleep)
+{
+	struct timeval	current;
+	long			total;
+
+	gettimeofday(&current, NULL);
+	total = (current.tv_sec - zero.tv_sec) * 1000000;
+	total += (current.tv_usec - zero.tv_usec);
+	total -= sleep;
+	if (philos->i == 1)
+		printf("%ld\n", total);
+		// printf("%d %ld %s \n", philos->i, total, state);
+}

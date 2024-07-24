@@ -6,13 +6,13 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:22:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/22 20:47:38 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/23 18:13:19 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	ft_wait_meal_end(t_philos *philos)
+static void	ft_wait_end_meal(t_philos *philos)
 {
 	int	i;
 	
@@ -21,7 +21,6 @@ static void	ft_wait_meal_end(t_philos *philos)
 	{
 		pthread_join(philos->nthread, NULL);
 		philos = philos->next;
-		// printf("the end of %d is at %d\n", philos->i, ft_timestamp(philos));
 		i++;
 	}
 }
@@ -41,24 +40,13 @@ static int	ft_launch_meal(t_philos *philos)
 	return (0);
 }
 
-static int	ft_launch_monitoring(t_philos *philos)
-{
-
-
-}
-
-static void	ft_wait_monitoring()
-{
-
-
-}
-
 void	ft_exe(t_philos *philos)
 {
+	pthread_t	end_check;
+	
 	if (ft_launch_meal(philos))
 		return ;
-	if (ft_launch_monitoring(philos->config))
-		return ;
-	ft_wait_meal_end(philos);
-	ft_wait_monitoring(philos->congig);
+	// pthread_create(&end_check, NULL, ft_end_check);
+	ft_wait_end_meal(philos);
+	// pthread_join(end_check, NULL);
 }

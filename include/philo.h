@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/22 20:49:39 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/23 17:12:42 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_config
 	int				eat_rep;
 	int				six_args;
 	int				someone_dead;
-	pthread_mutex_t	dead_check;
+	pthread_mutex_t	m_someone_dead;
 	struct timeval	start;
 }	t_config;
 
@@ -38,7 +38,6 @@ typedef struct s_philos
 	pthread_mutex_t	*fork;
 	pthread_t		nthread;
 	int				i;
-	int				already_eat;
 	struct timeval	last_meal;
 	t_config		*config;
 	struct s_philos	*next;
@@ -57,6 +56,7 @@ int			ft_strlen(const char *s);
 int			ft_is_posnbr(char *nbr);
 int			ft_atoi(const char *nptr);
 int			ft_timestamp(t_philos *philos);
+void		ft_msleep(int ms);
 
 // exe
 void		ft_exe(t_philos *philos);

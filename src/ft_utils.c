@@ -6,23 +6,33 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:26:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/22 00:13:00 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/23 18:21:51 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_timestamp(t_philos *philos)
-{
-	int				timestamp;
-	struct timeval	current;
-	struct timeval	start;
+// int	ft_timestamp(t_philos *philos)
+// {
+// 	int				timestamp;
+// 	struct timeval	current;
+// 	struct timeval	start;
 
-	start = philos->config->start;
-	gettimeofday(&current, NULL);
-	timestamp = (current.tv_sec - start.tv_sec) * 1000;
-	timestamp += (current.tv_usec - start.tv_usec) / 1000;
-	return (timestamp);
+// 	start = philos->config->start;
+// 	gettimeofday(&current, NULL);
+// 	timestamp = (current.tv_sec - start.tv_sec) * 1000;
+// 	timestamp += (current.tv_usec - start.tv_usec) / 1000;
+// 	return (timestamp);
+// }
+
+int ft_timestamp(t_philos *philos)
+{
+    struct timeval current;
+    gettimeofday(&current, NULL);
+    
+    int timestamp = (current.tv_sec - philos->config->start.tv_sec) * 1000
+                  + (current.tv_usec - philos->config->start.tv_usec) / 1000;
+    return timestamp;
 }
 
 int	ft_is_posnbr(char *nbr)
@@ -73,4 +83,10 @@ int	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void	ft_msleep(int ms)
+{
+	ms *= 1000;
+	usleep(ms);
 }

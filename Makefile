@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+#FLAGS = -Wall -Werror -Wextra
 
 SRC = 	main.c \
 		src/ft_exe.c \

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/21 17:34:51 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/23 17:13:48 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_philos	*ft_add_philo(t_config *config, int n)
 		return (NULL);
 	new->i = n;
 	new->config = config;
-	new->already_eat = 0;
 	new->fork = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(new->fork, NULL);
 	new->next = NULL;
@@ -69,5 +68,6 @@ void	ft_set_config(t_config *config, int ac, char **av)
 	else
 		config->six_args = 0;
 	config->someone_dead = 0;
+	pthread_mutex_init(&config->m_someone_dead, NULL);
 	gettimeofday(&config->start, NULL);
 }
