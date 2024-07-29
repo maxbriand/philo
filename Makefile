@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-#FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 SRC = 	main.c \
 		src/ft_exe.c \
@@ -32,6 +32,6 @@ fclean: clean
 re: fclean all
 
 valgrind:
-	valgrind --tool=drd --tool=helgrind ./philo 3 200 200 200
+	valgrind --tool=drd --tool=helgrind ./philo 2 900 300 300
 
 .PHONY: all re fclean clean

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/23 17:13:48 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/29 17:13:19 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ static t_philos	*ft_add_philo(t_config *config, int n)
 		return (NULL);
 	new->i = n;
 	new->config = config;
-	new->fork = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(new->fork, NULL);
+	new->already_eat = 0;
+	new->eat_counter = 0;
+	pthread_mutex_init(&new->m_fork, NULL);
+	pthread_mutex_init(&new->m_last_meal, NULL);
+	pthread_mutex_init(&new->m_eat_counter, NULL);
 	new->next = NULL;
 	return (new);
 }
@@ -58,8 +61,8 @@ void	ft_set_config(t_config *config, int ac, char **av)
 {
 	config->philo_nbr = ft_atoi(av[1]);
 	config->die_time = ft_atoi(av[2]);
-	config->eat_time = ft_atoi(av[3]) * 1000;
-	config->sleep_time = ft_atoi(av[4]) * 1000;
+	config->eat_time = ft_atoi(av[3]);
+	config->sleep_time = ft_atoi(av[4]);
 	if (ac == 6)
 	{
 		config->six_args = 1;
@@ -67,7 +70,7 @@ void	ft_set_config(t_config *config, int ac, char **av)
 	}
 	else
 		config->six_args = 0;
-	config->someone_dead = 0;
-	pthread_mutex_init(&config->m_someone_dead, NULL);
+	config->meal_is_ended = 0;
+	pthread_mutex_init(&config->m_meal_is_ended, NULL);
 	gettimeofday(&config->start, NULL);
 }

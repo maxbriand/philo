@@ -59,3 +59,5 @@ void	ft_write_time(t_philos *philos, struct timeval zero, char *state, int sleep
 		printf("%ld\n", total);
 		// printf("%d %ld %s \n", philos->i, total, state);
 }
+
+USE A MUTEX EVERYTIME WHEN I CHECK OR MODIFY A CONFIG VARIABLE that can change

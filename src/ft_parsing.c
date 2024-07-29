@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:17:03 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/17 21:11:41 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/27 21:00:18 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	ft_scope_args(t_config *config)
 	if (config->die_time < 60)
 		return (ft_perror("philo: the time to die should be at least 60ms"));
 	if (config->eat_time < 60)
-		return (ft_perror("philo: the time to die should be at least 60ms"));
+		return (ft_perror("philo: the time to eat should be at least 60ms"));
 	if (config->sleep_time < 60)
-		return (ft_perror("philo: the time to die should be at least 60ms"));
+		return (ft_perror("philo: the time to sleep should be at least 60ms"));
 	if (config->six_args && config->eat_rep < 1)
 		return (ft_perror("philo: philosophers have to eat at least 1 time"));
 	return (0);
