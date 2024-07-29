@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:22:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 17:17:12 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:46:14 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_wait_end_meal(t_philos *philos)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < philos->config->philo_nbr)
 	{
@@ -46,15 +46,17 @@ static int	ft_launch_meal(t_philos *philos)
 
 static void	ft_philo_alone(t_philos *philos)
 {
-	printf("\033[1;36m%d %d is thinking\033[0m\n", ft_timestamp(philos), philos->i);
+	printf("\033[1;36m%d %d is thinking\033[0m\n", \
+		ft_timestamp(philos), philos->i);
 	ft_msleep(philos->config->die_time);
-	printf("\033[1;31m%d %d died\033[0m\n", ft_timestamp(philos), philos->i);
+	printf("\033[1;31m%d %d died\033[0m\n", \
+		ft_timestamp(philos), philos->i);
 }
 
 void	ft_exe(t_philos *philos)
 {
 	pthread_t	end_check;
-	
+
 	if (philos->config->philo_nbr == 1)
 		return (ft_philo_alone(philos));
 	if (ft_launch_meal(philos))

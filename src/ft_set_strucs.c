@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 17:13:19 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:44:40 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_philos	*ft_add_philo(t_config *config, int n)
 	new->config = config;
 	new->already_eat = 0;
 	new->eat_counter = 0;
+	pthread_mutex_init(&new->m_already_eat, NULL);
 	pthread_mutex_init(&new->m_fork, NULL);
 	pthread_mutex_init(&new->m_last_meal, NULL);
 	pthread_mutex_init(&new->m_eat_counter, NULL);
@@ -42,7 +43,8 @@ t_philos	*ft_set_philos(t_config *config)
 	while (n <= config->philo_nbr)
 	{
 		last = current;
-		if (!(current = ft_add_philo(config, n)))
+		current = ft_add_philo(config, n);
+		if (!current)
 		{
 			// handle malloc error
 			return (NULL);
@@ -72,5 +74,6 @@ void	ft_set_config(t_config *config, int ac, char **av)
 		config->six_args = 0;
 	config->meal_is_ended = 0;
 	pthread_mutex_init(&config->m_meal_is_ended, NULL);
+	pthread_mutex_init(&config->m_printf, NULL);
 	gettimeofday(&config->start, NULL);
 }

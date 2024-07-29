@@ -6,20 +6,21 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:29:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/27 18:40:43 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:47:00 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_philos	*philos;
 	t_config	config;
 
 	if (ft_parsing(&config, ac, av))
 		return (1);
-	if (!(philos = ft_set_philos(&config)))
+	philos = ft_set_philos(&config);
+	if (!philos)
 		return (1);
 	ft_exe(philos);
 	ft_free_all(philos);

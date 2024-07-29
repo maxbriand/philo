@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:26:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 17:22:27 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/29 18:43:25 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	ft_timestamp(t_philos *philos)
 
 int	ft_get_duration(struct timeval *time)
 {
-	int	duration;
+	int				duration;
 	struct timeval	current;
 
 	gettimeofday(&current, NULL);
 	duration = (current.tv_sec - time->tv_sec) * 1000;
-	duration += (current.tv_usec - time->tv_usec) / 1000;	
+	duration += (current.tv_usec - time->tv_usec) / 1000;
 	return (duration);
 }
 
