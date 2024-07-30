@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:17:03 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:54:39 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:33:27 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int	ft_parsing(t_config *config, int ac, char **av)
 		return (1);
 	if (ft_are_pos_nbr(av))
 		return (1);
-	ft_set_config(config, ac, av);
+	if (ft_set_config(config, ac, av))
+		return (1);
 	if (ft_scope_args(config))
 		return (1);
 	return (0);

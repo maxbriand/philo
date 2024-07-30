@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:32:21 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:34:40 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			ft_perror(char	*error);
 
 // set structures
 t_philos	*ft_set_philos(t_config *config);
-void		ft_set_config(t_config *config, int ac, char **av);
+int			ft_set_config(t_config *config, int ac, char **av);
 
 // utils
 int			ft_strlen(const char *s);

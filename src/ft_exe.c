@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:22:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 19:23:22 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:27:25 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_launch_meal(t_philos *philos)
 	while (i < philos->config->philo_nbr)
 	{
 		if (pthread_create(&philos->nthread, NULL, ft_meal, philos))
-			return (1);
+			return (ft_perror("philo: pthread_create error"));
 		philos = philos->next;
 		i++;
 	}
@@ -62,7 +62,10 @@ void	ft_exe(t_philos *philos)
 	if (ft_launch_meal(philos))
 		return ;
 	if (pthread_create(&end_check, NULL, ft_end_check, philos))
+	{
+		ft_perror("philo: pthread_create error");
 		return ;
+	}
 	ft_wait_end_meal(philos);
 	pthread_join(end_check, NULL);
 }
