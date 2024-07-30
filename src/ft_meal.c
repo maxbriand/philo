@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 17:42:05 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:03:38 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ int	ft_eating(t_philos *philos)
 	pthread_mutex_lock(&philos->m_already_eat);
 	philos->already_eat = 1;
 	pthread_mutex_unlock(&philos->m_already_eat);
+	pthread_mutex_lock(&philos->m_eat_counter);
+	philos->eat_counter += 1;
+	pthread_mutex_unlock(&philos->m_eat_counter);
 	pthread_mutex_lock(&philos->m_last_meal);
 	gettimeofday(&philos->last_meal, NULL);
 	pthread_mutex_unlock(&philos->m_last_meal);
 	ft_msleep_divider(philos, philos->config->eat_time);
 	pthread_mutex_unlock(&philos->m_fork);
 	pthread_mutex_unlock(&philos->next->m_fork);
-	pthread_mutex_lock(&philos->m_eat_counter);
-	philos->eat_counter += 1;
-	pthread_mutex_unlock(&philos->m_eat_counter);
 	return (0);
 }
 
