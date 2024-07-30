@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:25:25 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:00:34 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_philos	*ft_set_philos(t_config *config)
 		current = ft_add_philo(config, n);
 		if (!current)
 		{
-			// handle malloc error
+			ft_perror("philo: malloc error");
+			ft_free_all(first);
 			return (NULL);
 		}
 		if (last)

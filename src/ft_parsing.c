@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:17:03 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:34:10 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:54:39 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ and not too long"));
 	if (config->six_args && (config->eat_rep < 1 || config->eat_rep > INT_MAX))
 		return (ft_perror("philo: philosophers have to eat at least 1 time \
 but not too many time"));
-	printf("%ld\n", config->eat_time);
 	return (0);
 }
 

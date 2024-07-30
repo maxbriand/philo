@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 01:22:30 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 18:45:28 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 19:00:13 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	ft_free_all(t_philos *philos)
 	int			philo_nbr;
 	t_philos	*last;
 
+	if (!philos)
+		return ;
 	i = 0;
 	pthread_mutex_destroy(&philos->config->m_meal_is_ended);
 	pthread_mutex_destroy(&philos->config->m_printf);
 	philo_nbr = philos->config->philo_nbr;
-	while (i < philo_nbr)
+	while (i < philo_nbr && philos)
 	{
 		pthread_mutex_destroy(&philos->m_fork);
 		pthread_mutex_destroy(&philos->m_already_eat);
