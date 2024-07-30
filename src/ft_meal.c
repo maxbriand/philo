@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 18:43:02 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:42:05 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	ft_eating(t_philos *philos)
 	pthread_mutex_lock(&philos->m_already_eat);
 	philos->already_eat = 1;
 	pthread_mutex_unlock(&philos->m_already_eat);
+	pthread_mutex_lock(&philos->m_last_meal);
 	gettimeofday(&philos->last_meal, NULL);
+	pthread_mutex_unlock(&philos->m_last_meal);
 	ft_msleep_divider(philos, philos->config->eat_time);
 	pthread_mutex_unlock(&philos->m_fork);
 	pthread_mutex_unlock(&philos->next->m_fork);
@@ -72,10 +74,17 @@ int	ft_thinking(t_philos *philos)
 	printf("\033[1;36m%d %d is thinking\033[0m\n", \
 		ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
-	if (philos->i % 2 == 0)
+	if (philos->i % 2 != 0)
+	{
 		ft_msleep(1);
-	pthread_mutex_lock(&philos->m_fork);
-	pthread_mutex_lock(&philos->next->m_fork);
+		pthread_mutex_lock(&philos->next->m_fork);		
+		pthread_mutex_lock(&philos->m_fork);
+	}
+	else
+	{
+		pthread_mutex_lock(&philos->m_fork);
+		pthread_mutex_lock(&philos->next->m_fork);		
+	}
 	if (ft_is_end(philos->config))
 		return (1);
 	pthread_mutex_lock(&philos->config->m_printf);

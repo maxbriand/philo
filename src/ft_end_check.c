@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 18:37:25 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:21:36 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static void	ft_if_already_eat(t_philos *philos, int limit)
 {
 	int	duration;
 
-	pthread_mutex_lock(&philos->m_last_meal);
-	duration = ft_get_duration(&philos->last_meal);
-	pthread_mutex_unlock(&philos->m_last_meal);
+	duration = ft_get_duration(philos, &philos->last_meal);
 	if (duration > limit)
 	{
 		pthread_mutex_lock(&philos->config->m_meal_is_ended);
@@ -35,7 +33,7 @@ static void	ft_if_didnt_eat(t_philos *philos, int limit)
 {
 	int	duration;
 
-	duration = ft_get_duration(&philos->config->start);
+	duration = ft_get_duration(philos, &philos->config->start);
 	if (duration > limit)
 	{
 		pthread_mutex_lock(&philos->config->m_meal_is_ended);
@@ -59,13 +57,13 @@ static int	ft_check_meal_limit(t_philos *philos)
 	i = 0;
 	while (i < philos->config->philo_nbr)
 	{
-		pthread_mutex_lock(&philos->m_already_eat);
-		if (philos->already_eat < limit)
+		pthread_mutex_lock(&philos->m_eat_counter);
+		if (philos->eat_counter < limit)
 		{
-			pthread_mutex_unlock(&philos->m_already_eat);
+			pthread_mutex_unlock(&philos->m_eat_counter);
 			return (0);
 		}
-		pthread_mutex_unlock(&philos->m_already_eat);
+		pthread_mutex_unlock(&philos->m_eat_counter);
 		philos = philos->next;
 		i++;
 	}
@@ -75,7 +73,6 @@ static int	ft_check_meal_limit(t_philos *philos)
 	return (1);
 }
 
-// use mutex for if in while loop?
 static int	ft_check_all_died(t_philos *philos)
 {
 	int	i;
@@ -85,10 +82,17 @@ static int	ft_check_all_died(t_philos *philos)
 	i = 0;
 	while (i < philos->config->philo_nbr)
 	{
+		pthread_mutex_lock(&philos->m_eat_counter);
 		if (!philos->eat_counter)
+		{
+			pthread_mutex_unlock(&philos->m_eat_counter);
 			ft_if_didnt_eat(philos, limit);
+		}
 		else
+		{
+			pthread_mutex_unlock(&philos->m_eat_counter);			
 			ft_if_already_eat(philos, limit);
+		}
 		if (philos->config->meal_is_ended)
 			return (1);
 		i++;

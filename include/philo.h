@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/29 18:26:51 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 17:20:37 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			ft_is_posnbr(char *nbr);
 int			ft_atoi(const char *nptr);
 int			ft_timestamp(t_philos *philos);
 void		ft_msleep(int ms);
-int			ft_get_duration(struct timeval *time);
+int			ft_get_duration(t_philos *philos, struct timeval *time);
 
 // exe
 void		ft_exe(t_philos *philos);
