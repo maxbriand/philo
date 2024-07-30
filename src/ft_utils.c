@@ -6,53 +6,25 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:26:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:29:42 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 00:44:00 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	ft_isspace(int c)
+void	ft_msleep_divider(t_philos *philos, int time)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
+	int	limit_ms;
 
-static long	ft_handle_sign(const char *sign, long nbr)
-{
-	if (*sign == '-')
-		nbr *= -1;
-	return (nbr);
-}
-
-long	ft_atol(const char *s)
-{
-	long		nbr;
-	const char	*sign;
-	int			digit;	
-
-	nbr = 0;
-	while (ft_isspace(*s) == 1)
-		s++;
-	sign = s;
-	if (*s == '-' || *s == '+')
-		s++;
-	while (*s)
+	limit_ms = 1000;
+	while (limit_ms < time)
 	{
-		digit = *s - '0';
-		if ((((LONG_MAX / 10 == nbr) && digit > LONG_MAX % 10)
-				|| (LONG_MAX / 10 < nbr)) && *sign != '-')
-			return (LONG_MAX);
-		if ((((LONG_MIN / 10 == -nbr) && - digit < LONG_MIN % 10)
-				|| (LONG_MIN / 10 > -nbr)) && *sign == '-')
-			return (LONG_MIN);
-		nbr *= 10;
-		nbr += (*s) - 48;
-		s++;
+		ft_msleep(limit_ms);
+		time -= limit_ms;
+		if (ft_is_end(philos->config))
+			return ;
 	}
-	nbr = ft_handle_sign(sign, nbr);
-	return (nbr);
+	ft_msleep(time);
 }
 
 int	ft_timestamp(t_philos *philos)
@@ -92,33 +64,6 @@ int	ft_is_posnbr(char *nbr)
 		nbr++;
 	}
 	return (1);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	char	test;
-	int		i;
-	int		total;
-
-	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
-		i++;
-	test = nptr[i];
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		test = nptr[i];
-		i++;
-	}
-	total = 0;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		total *= 10;
-		total += (nptr[i] - 48);
-		i++;
-	}
-	if (test == '-')
-		total *= -1;
-	return (total);
 }
 
 int	ft_strlen(const char *s)

@@ -11,6 +11,7 @@ SRC = 	main.c \
 		src/ft_free_all.c \
 		src/ft_end_check.c \
 		src/ft_meal.c \
+		src/ft_atol.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
@@ -30,8 +31,5 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
-
-valgrind:
-	valgrind --tool=drd --tool=helgrind ./philo 2 900 300 300
 
 .PHONY: all re fclean clean

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 19:34:40 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 00:45:33 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int			ft_set_config(t_config *config, int ac, char **av);
 // utils
 int			ft_strlen(const char *s);
 int			ft_is_posnbr(char *nbr);
-int			ft_atoi(const char *nptr);
 long		ft_atol(const char *s);
 int			ft_timestamp(t_philos *philos);
 void		ft_msleep(int ms);
 int			ft_get_duration(t_philos *philos, struct timeval *time);
+void		ft_msleep_divider(t_philos *philos, int time);
 
 // exe
 void		ft_exe(t_philos *philos);
@@ -76,6 +76,7 @@ void		ft_free_all(t_philos *philos);
 int			ft_eating(t_philos *philos);
 int			ft_sleeping(t_philos *philos);
 int			ft_thinking(t_philos *philos);
+int			ft_is_end(t_config *config);
 
 // dead check
 void		*ft_end_check(void *start);

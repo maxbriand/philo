@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:03:38 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 00:41:29 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ int	ft_is_end(t_config *config)
 	i = config->meal_is_ended;
 	pthread_mutex_unlock(&config->m_meal_is_ended);
 	return (i);
-}
-
-void	ft_msleep_divider(t_philos *philos, int time)
-{
-	int	limit_ms;
-
-	limit_ms = 1000;
-	while (limit_ms < time)
-	{
-		ft_msleep(limit_ms);
-		time -= limit_ms;
-		if (ft_is_end(philos->config))
-			return ;
-	}
-	ft_msleep(time);
 }
 
 int	ft_eating(t_philos *philos)
@@ -77,13 +62,13 @@ int	ft_thinking(t_philos *philos)
 	if (philos->i % 2 != 0)
 	{
 		ft_msleep(1);
-		pthread_mutex_lock(&philos->next->m_fork);		
+		pthread_mutex_lock(&philos->next->m_fork);
 		pthread_mutex_lock(&philos->m_fork);
 	}
 	else
 	{
 		pthread_mutex_lock(&philos->m_fork);
-		pthread_mutex_lock(&philos->next->m_fork);		
+		pthread_mutex_lock(&philos->next->m_fork);
 	}
 	if (ft_is_end(philos->config))
 		return (1);
