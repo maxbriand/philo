@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:05:13 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:03:17 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static int	ft_check_all_died(t_philos *philos)
 		}
 		if (philos->config->meal_is_ended)
 			return (1);
+		philos = philos->next;
 		i++;
 	}
 	return (0);
