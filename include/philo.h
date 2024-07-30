@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 17:20:37 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:32:21 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef struct s_config
 {
-	int				philo_nbr;
-	int				die_time;
-	int				eat_time;
-	int				sleep_time;
-	int				eat_rep;
+	long			philo_nbr;
+	long			die_time;
+	long			eat_time;
+	long			sleep_time;
+	long			eat_rep;
 	int				six_args;
 	int				meal_is_ended;
 	pthread_mutex_t	m_meal_is_ended;
@@ -61,6 +62,7 @@ void		ft_set_config(t_config *config, int ac, char **av);
 int			ft_strlen(const char *s);
 int			ft_is_posnbr(char *nbr);
 int			ft_atoi(const char *nptr);
+long		ft_atol(const char *s);
 int			ft_timestamp(t_philos *philos);
 void		ft_msleep(int ms);
 int			ft_get_duration(t_philos *philos, struct timeval *time);

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:22:09 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:25:25 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ t_philos	*ft_set_philos(t_config *config)
 
 void	ft_set_config(t_config *config, int ac, char **av)
 {
-	config->philo_nbr = ft_atoi(av[1]);
-	config->die_time = ft_atoi(av[2]);
-	config->eat_time = ft_atoi(av[3]);
-	config->sleep_time = ft_atoi(av[4]);
+	config->philo_nbr = ft_atol(av[1]);
+	config->die_time = ft_atol(av[2]);
+	config->eat_time = ft_atol(av[3]);
+	config->sleep_time = ft_atol(av[4]);
 	if (ac == 6)
 	{
 		config->six_args = 1;
-		config->eat_rep = ft_atoi(av[5]);
+		config->eat_rep = ft_atol(av[5]);
 	}
 	else
 		config->six_args = 0;

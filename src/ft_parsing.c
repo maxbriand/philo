@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:17:03 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 18:21:23 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/30 18:34:10 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ static int	ft_scope_args(t_config *config)
 {
 	if (config->philo_nbr < 1 || config->philo_nbr > 200)
 		return (ft_perror("philo: scope of philosophers is between 1 and 200"));
-	if (config->die_time < 60)
+	if (config->die_time < 60 || config->die_time > INT_MAX)
 		return (ft_perror("philo: the time to die should be at least 60ms \
-			but not too long"));
-	if (config->eat_time < 60)
+and not too long"));
+	if (config->eat_time < 60 || config->eat_time > INT_MAX)
 		return (ft_perror("philo: the time to eat should be at least 60ms \
-			but not too long"));
-	if (config->sleep_time < 60)
+and not too long"));
+	if (config->sleep_time < 60 || config->sleep_time > INT_MAX)
 		return (ft_perror("philo: the time to sleep should be at least 60ms \
-			but not too long"));
-	if (config->six_args && config->eat_rep < 1)
+and not too long"));
+	if (config->six_args && (config->eat_rep < 1 || config->eat_rep > INT_MAX))
 		return (ft_perror("philo: philosophers have to eat at least 1 time \
-			but not too many time"));
+but not too many time"));
+	printf("%ld\n", config->eat_time);
 	return (0);
 }
 
