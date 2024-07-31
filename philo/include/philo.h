@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 17:15:36 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:56:21 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_philos
 
 // parsing
 int			ft_parsing(t_config *config, int ac, char **av);
-int			ft_perror(char	*error);
 
 // set structures
 t_philos	*ft_set_philos(t_config *config);
@@ -78,6 +77,7 @@ void		ft_msleep(int ms);
 int			ft_get_duration(t_philos *philos, struct timeval *time);
 void		ft_msleep_divider(t_philos *philos, int time);
 void		*ft_close_mutex(t_philos *philos);
+int			ft_perror(char	*error);
 
 // exe
 void		ft_exe(t_philos *philos);

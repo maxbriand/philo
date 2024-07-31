@@ -5,7 +5,6 @@ FLAGS = -Wall -Werror -Wextra
 SRC = 	main.c \
 		src/ft_exe.c \
 		src/ft_parsing.c \
-		src/ft_perror.c \
 		src/ft_utils.c \
 		src/ft_set_config.c \
 		src/ft_free_all.c \

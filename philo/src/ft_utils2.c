@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:40:47 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 15:43:17 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:55:54 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,13 @@ void	*ft_close_mutex(t_philos *philos)
 	pthread_mutex_unlock(&philos->m_fork);
 	pthread_mutex_unlock(&philos->next->m_fork);
 	return (NULL);
+}
+
+int	ft_perror(char	*error)
+{
+	if (!error)
+		return (0);
+	write(2, error, ft_strlen(error));
+	write(2, "\n", 1);
+	return (1);
 }
