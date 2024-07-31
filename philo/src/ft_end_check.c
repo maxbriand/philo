@@ -6,43 +6,11 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 17:22:49 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 18:18:30 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	ft_if_already_eat(t_philos *philos, int limit)
-{
-	int	duration;
-
-	duration = ft_get_duration(philos, &philos->last_meal);
-	if (duration > limit)
-	{
-		pthread_mutex_lock(&philos->config->m_meal_is_ended);
-		philos->config->meal_is_ended = 1;
-		pthread_mutex_unlock(&philos->config->m_meal_is_ended);
-		pthread_mutex_lock(&philos->config->m_printf);
-		printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
-		pthread_mutex_unlock(&philos->config->m_printf);
-	}
-}
-
-static void	ft_if_didnt_eat(t_philos *philos, int limit)
-{
-	int	duration;
-
-	duration = ft_get_duration(philos, &philos->config->start);
-	if (duration > limit)
-	{
-		pthread_mutex_lock(&philos->config->m_meal_is_ended);
-		philos->config->meal_is_ended = 1;
-		pthread_mutex_unlock(&philos->config->m_meal_is_ended);
-		pthread_mutex_lock(&philos->config->m_printf);
-		printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
-		pthread_mutex_unlock(&philos->config->m_printf);
-	}
-}
 
 static int	ft_check_meal_limit(t_philos *philos)
 {
@@ -71,6 +39,23 @@ static int	ft_check_meal_limit(t_philos *philos)
 	return (1);
 }
 
+static void	ft_is_dead(t_philos *philos, int limit, struct timeval *last)
+{
+	int	duration;
+
+	pthread_mutex_unlock(&philos->m_eat_counter);
+	duration = ft_get_duration(philos, last);
+	if (duration > limit)
+	{
+		pthread_mutex_lock(&philos->config->m_meal_is_ended);
+		philos->config->meal_is_ended = 1;
+		pthread_mutex_unlock(&philos->config->m_meal_is_ended);
+		pthread_mutex_lock(&philos->config->m_printf);
+		printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
+		pthread_mutex_unlock(&philos->config->m_printf);
+	}
+}
+
 static int	ft_check_all_died(t_philos *philos)
 {
 	int	i;
@@ -82,15 +67,9 @@ static int	ft_check_all_died(t_philos *philos)
 	{
 		pthread_mutex_lock(&philos->m_eat_counter);
 		if (!philos->eat_counter)
-		{
-			pthread_mutex_unlock(&philos->m_eat_counter);
-			ft_if_didnt_eat(philos, limit);
-		}
+			ft_is_dead(philos, limit, &philos->config->start);
 		else
-		{
-			pthread_mutex_unlock(&philos->m_eat_counter);
-			ft_if_already_eat(philos, limit);
-		}
+			ft_is_dead(philos, limit, &philos->last_meal);
 		if (philos->config->meal_is_ended)
 			return (1);
 		philos = philos->next;
