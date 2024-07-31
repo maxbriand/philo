@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 18:18:30 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 18:37:09 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_is_dead(t_philos *philos, int limit, struct timeval *last)
 {
 	int	duration;
 
-	pthread_mutex_unlock(&philos->m_eat_counter);
+	pthread_mutex_unlock(&philos->m_already_eat);
 	duration = ft_get_duration(philos, last);
 	if (duration > limit)
 	{
@@ -65,8 +65,8 @@ static int	ft_check_all_died(t_philos *philos)
 	i = 0;
 	while (i < philos->config->philo_nbr)
 	{
-		pthread_mutex_lock(&philos->m_eat_counter);
-		if (!philos->eat_counter)
+		pthread_mutex_lock(&philos->m_already_eat);
+		if (!philos->already_eat)
 			ft_is_dead(philos, limit, &philos->config->start);
 		else
 			ft_is_dead(philos, limit, &philos->last_meal);
