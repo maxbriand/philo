@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 00:52:40 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 16:27:20 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,6 @@ int	ft_thinking(t_philos *philos)
 		ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
 	return (0);
-}
-
-void	*ft_close_mutex(t_philos *philos)
-{
-	pthread_mutex_unlock(&philos->m_fork);
-	pthread_mutex_unlock(&philos->next->m_fork);
-	return (NULL);
 }
 
 void	*ft_meal(void *start)

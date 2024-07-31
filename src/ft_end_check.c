@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 01:03:17 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 01:06:55 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	ft_check_all_died(t_philos *philos)
 		}
 		else
 		{
-			pthread_mutex_unlock(&philos->m_eat_counter);			
+			pthread_mutex_unlock(&philos->m_eat_counter);
 			ft_if_already_eat(philos, limit);
 		}
 		if (philos->config->meal_is_ended)

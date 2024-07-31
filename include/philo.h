@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 02:51:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 00:45:33 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 15:44:22 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int			ft_timestamp(t_philos *philos);
 void		ft_msleep(int ms);
 int			ft_get_duration(t_philos *philos, struct timeval *time);
 void		ft_msleep_divider(t_philos *philos, int time);
+void		*ft_close_mutex(t_philos *philos);
 
 // exe
 void		ft_exe(t_philos *philos);

@@ -7,11 +7,13 @@ SRC = 	main.c \
 		src/ft_parsing.c \
 		src/ft_perror.c \
 		src/ft_utils.c \
-		src/ft_set_strucs.c \
+		src/ft_set_config.c \
 		src/ft_free_all.c \
 		src/ft_end_check.c \
 		src/ft_meal.c \
 		src/ft_atol.c \
+		src/ft_utils2.c \
+		src/ft_set_philos.c \
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 01:26:27 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 00:54:50 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 15:41:05 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@ void	ft_msleep_divider(t_philos *philos, int time)
 			return ;
 	}
 	ft_msleep(time);
-}
-
-int	ft_timestamp(t_philos *philos)
-{
-	int				timestamp;
-	struct timeval	current;
-	struct timeval	start;
-
-	start = philos->config->start;
-	gettimeofday(&current, NULL);
-	timestamp = (current.tv_sec - start.tv_sec) * 1000;
-	timestamp += (current.tv_usec - start.tv_usec) / 1000;
-	return (timestamp);
 }
 
 int	ft_get_duration(t_philos *philos, struct timeval *time)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_strucs.c                                    :+:      :+:    :+:   */
+/*   ft_set_philos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:29:48 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 00:38:41 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 15:42:39 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_destroy_mutex(t_philos *philo, int n)
 	{
 		pthread_mutex_destroy(&philo->m_already_eat);
 		pthread_mutex_destroy(&philo->m_fork);
-		pthread_mutex_destroy(&philo->m_last_meal);		
+		pthread_mutex_destroy(&philo->m_last_meal);
 	}
 	return (1);
 }
@@ -97,29 +97,4 @@ t_philos	*ft_set_philos(t_config *config)
 	}
 	current->next = first;
 	return (first);
-}
-
-int	ft_set_config(t_config *config, int ac, char **av)
-{
-	config->philo_nbr = ft_atol(av[1]);
-	config->die_time = ft_atol(av[2]);
-	config->eat_time = ft_atol(av[3]);
-	config->sleep_time = ft_atol(av[4]);
-	if (ac == 6)
-	{
-		config->six_args = 1;
-		config->eat_rep = ft_atol(av[5]);
-	}
-	else
-		config->six_args = 0;
-	config->meal_is_ended = 0;
-	if (pthread_mutex_init(&config->m_meal_is_ended, NULL))
-		return (ft_perror("philo: mutex init issue"));
-	if (pthread_mutex_init(&config->m_printf, NULL))
-	{
-		pthread_mutex_destroy(&config->m_meal_is_ended);
-		return (ft_perror("philo: mutex init issue"));
-	}
-	gettimeofday(&config->start, NULL);
-	return (0);
 }
