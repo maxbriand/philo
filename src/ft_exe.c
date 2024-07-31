@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:22:23 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/30 19:27:25 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:23:29 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,9 @@ static int	ft_launch_meal(t_philos *philos)
 
 static void	ft_philo_alone(t_philos *philos)
 {
-	printf("\033[1;36m%d %d is thinking\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(CYAN"%d %d is thinking"RESET, ft_timestamp(philos), philos->i);
 	ft_msleep(philos->config->die_time);
-	printf("\033[1;31m%d %d died\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
 }
 
 void	ft_exe(t_philos *philos)

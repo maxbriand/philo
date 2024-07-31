@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 16:51:53 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:22:49 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	ft_if_already_eat(t_philos *philos, int limit)
 		philos->config->meal_is_ended = 1;
 		pthread_mutex_unlock(&philos->config->m_meal_is_ended);
 		pthread_mutex_lock(&philos->config->m_printf);
-		printf("\033[1;31m%d %d died\033[0m\n", \
-			ft_timestamp(philos), philos->i);
+		printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
 		pthread_mutex_unlock(&philos->config->m_printf);
 	}
 }
@@ -40,8 +39,7 @@ static void	ft_if_didnt_eat(t_philos *philos, int limit)
 		philos->config->meal_is_ended = 1;
 		pthread_mutex_unlock(&philos->config->m_meal_is_ended);
 		pthread_mutex_lock(&philos->config->m_printf);
-		printf("\033[1;31m%d %d died\033[0m\n", \
-			ft_timestamp(philos), philos->i);
+		printf(RED"%d %d died"RESET, ft_timestamp(philos), philos->i);
 		pthread_mutex_unlock(&philos->config->m_printf);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 16:56:02 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 17:21:18 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	ft_is_end(t_config *config)
 int	ft_eating(t_philos *philos)
 {
 	pthread_mutex_lock(&philos->config->m_printf);
-	printf("\033[1;35m%d %d is eating\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(MAGENTA"%d %d is eating"RESET, ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
 	pthread_mutex_lock(&philos->m_already_eat);
 	philos->already_eat = 1;
@@ -46,8 +45,7 @@ int	ft_eating(t_philos *philos)
 int	ft_sleeping(t_philos *philos)
 {
 	pthread_mutex_lock(&philos->config->m_printf);
-	printf("\033[1;33m%d %d is sleeping\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(YELLOW"%d %d is sleeping"RESET, ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
 	ft_msleep_divider(philos, philos->config->sleep_time);
 	return (0);
@@ -56,8 +54,7 @@ int	ft_sleeping(t_philos *philos)
 int	ft_thinking(t_philos *philos)
 {
 	pthread_mutex_lock(&philos->config->m_printf);
-	printf("\033[1;36m%d %d is thinking\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(CYAN"%d %d is thinking"RESET, ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
 	if (philos->i % 2 != 0)
 	{
@@ -73,10 +70,8 @@ int	ft_thinking(t_philos *philos)
 	if (ft_is_end(philos->config))
 		return (1);
 	pthread_mutex_lock(&philos->config->m_printf);
-	printf("\033[1;32m%d %d has taken a fork\033[0m\n", \
-		ft_timestamp(philos), philos->i);
-	printf("\033[1;32m%d %d has taken a fork\033[0m\n", \
-		ft_timestamp(philos), philos->i);
+	printf(GREEN"%d %d has taken a fork"RESET, ft_timestamp(philos), philos->i);
+	printf(GREEN"%d %d has taken a fork"RESET, ft_timestamp(philos), philos->i);
 	pthread_mutex_unlock(&philos->config->m_printf);
 	return (0);
 }
