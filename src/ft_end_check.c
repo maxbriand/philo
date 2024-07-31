@@ -6,7 +6,7 @@
 /*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 23:50:59 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 01:06:55 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/07/31 16:51:53 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	*ft_end_check(void *start)
 			break ;
 		if (ft_check_meal_limit(philos))
 			break ;
-		ft_msleep(1);
+		usleep(2);
 	}
 	return (NULL);
 }
