@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_meal.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriand <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbriand <mbriand@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:22:25 by mbriand           #+#    #+#             */
-/*   Updated: 2024/07/31 17:21:18 by mbriand          ###   ########.fr       */
+/*   Updated: 2024/08/03 19:22:34 by mbriand          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	ft_thinking(t_philos *philos)
 void	*ft_meal(void *start)
 {
 	t_philos	*philos;
-	int			i;
 
 	philos = (t_philos *) start;
 	while (1)
@@ -93,7 +92,6 @@ void	*ft_meal(void *start)
 		ft_sleeping(philos);
 		if (ft_is_end(philos->config))
 			break ;
-		i++;
 	}
 	return (NULL);
 }
